@@ -19,10 +19,26 @@ class PackFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            'size' => $this->faker->numberBetween(1, 10000),
+            'active' => true,
         ];
+    }
+
+    /**
+     * Indicate that the user is suspended.
+     *
+     * @return Factory
+     */
+    public function inactive(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active' => false,
+            ];
+        }
+        );
     }
 }
